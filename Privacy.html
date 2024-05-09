@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="/Icons/FavIcon.svg">
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+        import { getPerformance } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-performance.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBO6FtBtGkbpdNLR-9IfazKEthWAOvtxUw",
+            authDomain: "tradeshub-8ea66.firebaseapp.com",
+            projectId: "tradeshub-8ea66",
+            storageBucket: "tradeshub-8ea66.appspot.com",
+            messagingSenderId: "254064509739",
+            appId: "1:254064509739:web:42e2a2902ffae3d4e0fb6e",
+            measurementId: "G-KKS5GGJ87K"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const perf = getPerformance(app);
+        const analytics = getAnalytics(app);
+    </script>
+</head>
+<script src="//code.tidio.co/u1rertwm6macfvpng41rnli5zhlqbhda.js" async></script>
+<body>
+        <header>
+            <h3 onclick="switchPage('index')" id="main_heading">&nbsp;&nbsp;&nbsp;&nbsp;TradersHub<span
+                    class="highlight">.Crypto</span></h3>
+            <!-- Navigation Bar -->
+            <div id="nav_bar">
+                <h3 class="nav_bar_elements" id="Traders" onclick="switchPage('Traders')">Trades</h3>
+                <h3 class="nav_bar_elements" id="LeaderBoard" onclick="switchPage('LeaderBoard')">LeaderBoard</h3>
+                <h3 class="nav_bar_elements" onclick="switchPage('FAQ')" id="FAQ">FAQ</h3>
+            </div>
+        </header>
+        <div id="terms_section">
+            <br>
+            <br>
+            <img id="terms_img" src="/Res/Personal Data.svg" alt="">
+            <br>
+            <br>
+            <div class="terms-content">
+                <br>
+                <h1>Privacy <span class="highlight">& </span>Policy</h1>
+                <p>
+                    This Privacy Policy describes how TradesHub.crypto ("TradesHub", "we", "us", or "our") collects, uses, and shares your
+                    personal information when you access or use our copy trading services ("Services"). By accessing or using our Services,
+                    you agree to the terms of this Privacy Policy.
+                </p>
+                <br>
+                <br>
+                <h2>Information We Collect</h2>
+                <p>Personal Information When you register an account with us, we may collect personal information such as your name, email
+                address, contact information, and documentation for identity verification purposes. <br>
+                Usage Data We collect information about your interactions with our Services, including the trades you execute and your
+                interactions with other users. <br>
+                Device Information We may collect information about the device you use to access our Services, including your IP
+                address, browser type, and operating system. <br>
+                Cookies and Tracking Technologie .We use cookies and similar tracking technologies to analyze trends, administer the
+                website, track users' movements around the website, and gather demographic information about our user base. We also use
+                cookies for marketing purposes, including retargeting and tracking user interactions with our advertisements..</p>
+                <br>
+                <br>
+                <h2>How We Use Your Information</h2>
+                <p>
+                    Providing and Improving Our Services: We use the information we collect to provide, maintain, and improve our Services,
+                    including executing trades on your behalf and enhancing the user experience. <br>
+                    Communications: We may use your contact information to communicate with you about your account, updates to our Services,
+                    and promotional offers. You can opt out of receiving promotional communications at any time.<br>
+                    Analytics and Research: We use analytics tools, including Google Analytics, to analyze trends, track user behavior, and
+                    gather demographic information about our user base. This information helps us improve our Services and tailor our
+                    marketing efforts.
+                </p>
+                <br>
+                <br>
+                <h2>Sharing Your Information</h2>
+                <p>
+                Service Providers: We may share your information with third-party service providers who assist us in providing,
+                maintaining, and improving our Services. These service providers may have access to your personal information for the
+                purpose of performing these tasks on our behalf. <br>
+                Legal Compliance: We may disclose your information to comply with applicable laws, regulations, or legal processes, or
+                to respond to lawful requests from government authorities. <br>
+                Business Transfers: In the event of a merger, acquisition, or sale of all or a portion of our assets, your information
+                may be transferred to the acquiring entity.
+                </p>
+                <br>
+                <br>
+                <h2>Your Choices </h2>
+                <p>
+                    Account Information: You can review and update the personal information associated with your account by logging into
+                    your account settings.<br>
+                    Cookies: Most web browsers are set to accept cookies by default. If you prefer, you can usually adjust your browser
+                    settings to disable or reject cookies. However, disabling cookies may affect the functionality of our website.
+                </p>
+                <br>
+                <br>
+                <br>
+            </div>
+            <img id="terms_img" src="/Res/personal Data 2.svg" alt="">
+            <br><br>
+        </div>
+    <footer>
+        <h4 class="footer_elements" id="footer_heading">© 2024 CopyTrade. All rights reserved</h4>
+        <div id="nav_bar">
+            <h4 class="footer_elements" onclick="switchPage('Terms')">Terms</h4>
+            <h4 class="footer_elements" onclick="switchPage('Privacy')">Privacy</h4>
+            <h4 class="footer_elements" onclick="switchPage('Contact')">Contact</h4>
+        </div>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>

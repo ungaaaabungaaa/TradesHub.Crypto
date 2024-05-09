@@ -1,0 +1,931 @@
+html,
+body {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    font-family: 'Raleway', sans-serif;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
+}
+
+
+/* Utility Classes */
+.highlight
+{
+    color: #6C63FF;
+}
+
+ul {
+    list-style-type: none;
+    text-align: start;
+}
+
+.full_screen
+{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.flex_center_center
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.1rem;
+}
+
+.flex_dir_row
+{
+    flex-direction: row;
+}
+
+.flex_dir_col {
+    flex-direction: column;
+}
+
+.margin_left
+{
+    margin-left: 8%;
+}
+.text_align_center
+{
+    text-align: center;
+}
+
+.text_align_end {
+    text-align: end;
+}
+
+
+/* Utility Classes */
+
+
+
+/* Icons */
+.mdi--instagram {
+    display: inline-block;
+    width: 2.2rem;
+    height: 2.2rem;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transform: rotate(-90deg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4zm9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3'/%3E%3C/svg%3E");
+}
+
+.ri--facebook-fill {
+    display: inline-block;
+    width: 2.2rem;
+    height: 2.2rem;
+    transform: rotate(-90deg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4z'/%3E%3C/svg%3E");
+}
+
+.fa6-brands--x-twitter {
+    display: inline-block;
+    width: 2.2rem;
+    height: 2.2rem;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transform: rotate(-90deg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='black' d='M389.2 48h70.6L305.6 224.2L487 464H345L233.7 318.6L106.5 464H35.8l164.9-188.5L26.8 48h145.6l100.5 132.9zm-24.8 373.8h39.1L151.1 88h-42z'/%3E%3C/svg%3E");
+}
+
+
+/* Icons*/
+
+
+
+/* Font Sizes */
+
+h1 {
+    font-size: 3.1rem;
+    font-weight: bolder;
+    margin: 0;
+}
+
+h2 {
+    font-size: xx-large;
+    font-weight: bold;
+    margin: 0;
+}
+
+
+h3 {
+    font-size: large;
+    font-weight: bold;
+    margin: 0;
+}
+
+
+h4
+{
+    font-size: small;
+    font-weight: bold;
+    margin: 0;
+}
+
+p {
+    font-size: medium;
+    font-weight: normal;
+    font-family: 'Roboto', sans-serif;
+}
+
+hr
+{
+    size: 2rem;
+    color: transparent;
+}
+
+/* Font Sizes */
+
+/* Header */
+
+header {
+    margin-top: 1.2%;
+    margin-bottom: 1.2%;
+    display: grid;
+    height: 4%;
+    align-items: center;
+    grid-template-columns: 15% 40% 35% 10%;
+    grid-template-rows: 1;
+    width: 100%;
+    overflow: hidden;
+}
+
+#nav_bar
+{
+    grid-column-start: 3;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    overflow: hidden;
+}
+
+.nav_bar_elements {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.nav_bar_elements:hover {
+    color: #6C63FF;
+}
+
+
+/* For all mobile devices */
+@media only screen and (max-width: 767px) {
+    /* Your CSS styles for mobile devices here */
+    #nav_bar 
+    {
+        display: none;
+    }
+    header 
+    {
+       
+        display: flex;
+        width: 100%;
+        height: 100%;
+        height: 4%;
+        align-items: center;
+        justify-content: flex-start;
+        overflow: hidden;
+    }
+
+    h3
+    {
+        font-size: small;
+        font-weight: bold;
+    }
+
+    #footer_heading 
+    {
+        font-size: xx-small;
+        font-weight: normal;
+        margin: 0;
+    }
+}
+
+/* For all tablets */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    /* Your CSS styles for tablets here */
+    #nav_bar {
+            display: none;
+        }
+    header {
+
+      
+        display: flex;
+        width: 100%;
+        height: 100%;
+        height: 4%;
+        align-items: center;
+        justify-content: flex-start;
+        overflow: hidden;
+    }
+}
+
+/* Header */
+
+
+
+/* footer */
+
+footer {
+    width: 100%;
+    height: 6%;
+    background-color: #6C63FF;
+    display: grid;
+    overflow: hidden;
+    align-items: center;
+    grid-template-columns: 2% 72% 25% 2%;
+    grid-template-rows: 100%;
+}
+
+#footer_heading {
+    grid-column-start: 2;
+}
+
+.footer_elements {
+    color: white;
+    font-size: medium;
+    font-weight: normal;
+    cursor: pointer;
+    transition: color .2s ease-in;
+}
+
+.footer_elements:hover {
+    color: black;
+
+}
+
+/* footer */
+
+
+/* Images */
+
+
+#bitcoin_img {
+    grid-column-start: 2;
+    max-width: 49%;
+    min-width: 38%;
+    height: auto;
+    object-fit: contain;
+}
+
+#about_us_img
+{
+    grid-column-start: 2;
+    max-width: 92%;
+    min-width: 58%;
+    object-fit: contain;
+}
+
+#about_us_context
+{
+    grid-column-start: 1;
+    width: 100%;
+    height: 100%;
+}
+
+
+#about_us_img
+{
+    grid-column-start: 3;
+    max-width: 49%;
+    min-width: 38%;
+    height: auto;
+}
+
+#terms_img
+{
+    max-width: 25%;
+}
+
+#awards_img {
+    grid-column-start: 3;
+    min-width: 52%;
+    max-width: 62%;
+    object-fit: contain;
+}
+
+#about_img
+{
+    min-width: 12%;
+    max-width: 22%;
+    object-fit: contain;    
+}
+
+#growth_img
+{
+    min-width: 52%;
+    max-width: 62%;
+    object-fit: contain;
+}
+
+#leadboard_img
+{
+    min-width: 52%;
+    max-width: 62%;
+    object-fit: contain;
+}
+
+#comingSoon
+{
+    min-width: 42%;
+    max-width: 52%;
+    object-fit: contain;
+}
+
+#aboutus_img
+{
+    min-width: 42%;
+    max-width: 52%;
+    object-fit: contain;
+}
+
+
+/* Images */
+
+
+
+/* Sections */
+
+section
+{
+    width: 100%;
+    min-height: 52%;
+    max-height: 62%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+
+#section_one {
+    min-width: 100%;
+    min-height: 55%;
+    max-height: 65%;
+    display: grid;
+    align-items: center;
+    /* Align items vertically in the center */
+    justify-items: center;
+    /* Align items horizontally in the center */
+    grid-template-rows: 100%;
+    grid-template-columns: 50% 50%;
+}
+
+#section_one_one {
+    grid-column-start: 1;
+}
+
+
+button {
+    padding: 1rem 2.8rem;
+    /* Adjusted padding values */
+    background-color: #6C63FF;
+    color: white;
+    display: inline-block;
+    /* Changed to inline-block for proper sizing */
+    border: 1px solid;
+    border-color: white;
+    font-size: medium;
+    border-radius: 0.6rem;
+    cursor: pointer;
+    transition: color .2s ease-in;
+    /* Added padding transition */
+}
+
+button:hover {
+    background-color: white;
+    color: #6C63FF;
+    border-color: #6C63FF;
+}
+
+#learn_more {
+    display: inline;
+    font-size: 0.8rem;
+    margin-left: 1.1rem;
+    color: gray;
+    transition: color .2s ease-in;
+}
+
+#learn_more {
+    color: black;
+    cursor: pointer;
+}
+
+
+
+/* Terms & Privacy  Page */
+#terms_section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.terms-content
+{
+    max-width: 68%;
+    text-align: center;
+}
+
+/* Terms & Privacy Page */
+
+
+
+
+/* Trades page */
+
+.trades_tabel
+{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+ table {
+     width: 75%;
+     border-collapse: collapse;
+     border: none;
+ }
+
+ th,
+ td {
+     padding: 10px;
+     text-align: center;
+     border: none;
+ }
+
+ th {
+     background-color: #6C63FF;
+     color: white;
+     border: none;
+ }
+
+ tr:nth-child(even) {
+     background-color: #F2F2F2;
+ }
+
+
+   /* Responsive styles */
+   @media screen and (max-width: 768px) {
+
+       th,
+       td {
+           padding: 5px;
+       }
+
+       th:nth-child(n+5),
+       td:nth-child(n+5) {
+           display: none;
+       }
+   }
+
+   @media screen and (max-width: 480px) {
+
+       th:nth-child(n+4),
+       td:nth-child(n+4) {
+           display: none;
+       }
+   }
+
+
+/* Trades page */
+
+
+#section_two {
+    display: grid;
+    grid-template-columns: 12% 45% 41% 2%;
+    grid-template-rows: 100%;
+    align-items: center;
+    /* Align items vertically in the center */
+    justify-items: center;
+    /* Align items horizontally in the center */
+}
+
+
+#section_two_two {
+    width: 100%;
+    height: 100%;
+    grid-column-start: 2;
+    overflow: hidden;
+}
+
+.cards_layout
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+
+
+.card {
+    
+    width: 28%;
+    height: 62%;
+    margin-left: 1.1rem;
+    border-radius: 1.1rem;
+    background-color: #F2F2F2;
+    display: grid;
+    grid-template-columns: 45% 55%;
+    grid-template-rows: 35% 45% 20%;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "Profile Info"
+        "Graph Graph"
+        "view view";
+}
+
+.smooth_graph
+{
+    width: 72%;
+    object-fit: contain;
+    overflow: hidden;
+}
+
+.Graph {
+    width: 100%;
+    height: 100%;
+    grid-area: Graph;
+}
+
+.Profile {
+    width: 100%;
+    height: 100%;
+    grid-area: Profile;
+}
+
+.Info {
+    width: 92%;
+    height: 100%;
+    grid-area: Info;
+}
+
+.view {
+    grid-area: view;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+#card_profile1,#card_profile2
+{
+    width: 65%;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+#card_username1,#card_username2
+{
+    max-width: 85%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-lines: 1;
+    color: black;
+    font-size: medium;
+    margin-bottom: 4.1%;
+    font-weight: bold;
+}
+
+#card_profit1,#card_profit2
+{
+    color: #6C63FF;
+    margin: 0;
+    font-size: small;
+}
+
+
+.card:nth-child(2) {
+    margin-top: 2.1%;
+}
+
+
+/* FAQ Section */
+
+#section_five
+{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 45% 55%;
+    grid-template-rows: 32% 68%;
+    gap: 0px 0px;
+    grid-template-areas:
+    "FAQ-Title FAQ-Title"
+    "FAQ FAQ-IMG";
+}
+
+.faq_accordation_section
+{
+    width: 100%;
+    height: 100%;
+    grid-column-start: 1;
+}
+
+.FAQ-Title {
+    grid-area: FAQ-Title;
+    width: 82%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.FAQ {
+    grid-area: FAQ;
+    width: 100%;
+    height: 100%;
+}
+
+.FAQ-IMG {
+    grid-area: FAQ-IMG;
+    width: 100%;
+    height: 100%;
+}
+
+
+#FAQ_img
+{
+    max-width: 52%;
+    object-fit: contain;
+}
+
+
+.accordion {
+    margin-bottom: 1.2%;
+    width: 72%;
+}
+
+.accordion .accordion-header {
+    background-color: #f2f2f2;
+    padding: 2.4%;
+    border-radius: 0.4rem;
+    cursor: pointer;
+}
+
+.accordion .accordion-content {
+    display: none;
+    padding: 10px;
+}
+
+/* FAQ Section */
+
+#section_three
+{
+    width: 100%;
+    height: 85%;
+}
+
+/* Growth Section */
+#section_three_three
+{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 45% 55%;
+    grid-template-rows: 15% 85%;
+    gap: 0px 0px;
+    grid-template-areas:
+        ". Growth-title"
+        "Growth-Image Growth-Calculator";
+}
+
+
+.Growth-title {
+    width: 100%;
+    height: 100%;
+    grid-area: Growth-title;
+}
+
+.Growth-Calculator {
+    width: 100%;
+    height: 100%;
+    grid-area: Growth-Calculator;
+}
+
+.Growth-Image {
+    width: 100%;
+    height: 100%;
+    grid-area: Growth-Image;
+}
+
+#amountDisplay,#monthsDisplay
+{
+    display: block;
+    font-size: large;
+    font-weight: normal;
+    margin-bottom: 2.1%;
+}
+
+#amount,#months
+{
+    width: 450px;
+}
+
+/* Style for the range slider */
+input[type=range] {
+    -webkit-appearance: none;
+    /* Remove default styling */
+    width: 100%;
+    /* Full-width */
+    height: 10px;
+    /* Height of the slider */
+    background: grey;
+    /* Track color */
+    outline: none;
+    /* Remove outline */
+    border-radius: 5px;
+    /* Rounded corners */
+}
+
+/* Style for the thumb */
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* Remove default styling */
+    width: 20px;
+    /* Width of the thumb */
+    height: 20px;
+    /* Height of the thumb */
+    background: #6C63FF;
+    /* Thumb color */
+    border-radius: 50%;
+    /* Rounded shape */
+    cursor: pointer;
+    /* Cursor style */
+    margin-top: -5px;
+    /* Adjust vertical alignment */
+}
+
+/* Style for the range before the thumb */
+input[type=range]::-webkit-slider-runnable-track {
+    background: #e4e4e4;
+    /* Previous range color */
+    height: 10px;
+    /* Height of the previous range */
+    border-radius: 5px;
+    /* Rounded corners */
+}
+
+/* Growth Section */
+
+
+/* LeaderBoard Section */
+
+#section_four
+{
+    width: 100%;
+    height: 120%;
+}
+
+#section_four_four
+{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 55% 45%;
+    grid-template-rows: 15% 85%;
+    gap: 0px 0px;
+    grid-template-areas:
+        "LeaderBoard-Title LeaderBoard-Title"
+        "leaderboard Leaderboard_preview";
+}
+
+.LeaderBoard-Title {
+    grid-area: LeaderBoard-Title;
+    width: 100%;
+    height: 100%;
+}
+
+.Leaderboard_preview {
+    grid-area: Leaderboard_preview;
+    width: 100%;
+    height: 100%;
+}
+
+.leaderboard {
+    grid-area: leaderboard;
+    width: 100%;
+    height: 100%;
+}
+
+/* LeaderBoard Section */
+
+
+/* About Section */
+
+#section_six
+{
+    width: 100%;
+    height: 120%;
+}
+
+#section_six_six
+{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 12% 12% 52% 12% 12%;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+    ". Social about . ."
+    ". Social about . ."
+    ". Social about . .";
+}
+
+.about {
+    grid-area: about;
+    width: 100%;
+    height: 100%;
+}
+
+.Social {
+    grid-area: Social;
+    width: auto;
+    height: 100%;
+    
+
+}
+
+.vertical_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vertical_text {
+
+    transform: rotate(-90deg);
+    /* Rotate the text container */
+}
+
+.icon {
+    width: 2.2rem;
+    display: block;
+    /* Corrected typo in units */
+    height: 2.2rem;
+    /* Corrected typo in units */
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin: 5.1%;
+}
+
+/* About Section */
+
+
+/* Leaderboard Cards */
+
+.leadboard_card
+{
+    width: 30%;
+    background-color: transparent;
+    height: auto;
+    padding: 1.2%;
+    display: flex;
+    margin-bottom: 0;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+#leadboard_card_profile
+{
+    width: 45px;
+    border-radius: 50%;
+    height: 45px;
+    object-fit: contain;
+}
+
+/* Leaderboard Cards */

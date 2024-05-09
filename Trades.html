@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trades</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="/Icons/FavIcon.svg">
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+        import { getPerformance } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-performance.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBO6FtBtGkbpdNLR-9IfazKEthWAOvtxUw",
+            authDomain: "tradeshub-8ea66.firebaseapp.com",
+            projectId: "tradeshub-8ea66",
+            storageBucket: "tradeshub-8ea66.appspot.com",
+            messagingSenderId: "254064509739",
+            appId: "1:254064509739:web:42e2a2902ffae3d4e0fb6e",
+            measurementId: "G-KKS5GGJ87K"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const perf = getPerformance(app);
+        const analytics = getAnalytics(app);
+
+        async function fetchTradesAndPopulateTable() {
+            const tradesCollection = collection(db, "Trades");
+            const querySnapshot = await getDocs(tradesCollection);
+            const tableBody = document.querySelector("table tbody");
+            querySnapshot.forEach((doc) => {
+                const tradeData = doc.data();
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                      <td>${tradeData.Date}</td>
+                      <td>${tradeData.Asset}</td>
+                      <td>${tradeData.buyOrSell}</td>
+                      <td>${tradeData.Quantity}</td>
+                      <td>${tradeData.EntryPrice}</td>
+                      <td>${tradeData.ExitPrice}</td>
+                      <td>${tradeData.ProfitOrLoss}</td>
+                    `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function convertToCSV(querySnapshot) {
+            const rows = [];
+            const headers = ["Date", "Asset", "Buy/Sell", "Quantity", "Entry Price", "Exit Price", "Profit/Loss"];
+            rows.push(headers.join(","));
+            querySnapshot.forEach((doc) => {
+                const tradeData = doc.data();
+                const row = [
+                    tradeData.Date,
+                    tradeData.Asset,
+                    tradeData.buyOrSell,
+                    tradeData.Quantity,
+                    tradeData.EntryPrice,
+                    tradeData.ExitPrice,
+                    tradeData.ProfitOrLoss
+                ];
+                rows.push(row.join(","));
+            });
+            return rows.join("\n");
+        }
+
+
+        function downloadFile(content, fileName) {
+            const blob = new Blob([content], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', fileName);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        async function downloadCSV() {
+            const tradesCollection = collection(db, "Trades");
+            const querySnapshot = await getDocs(tradesCollection);
+            const csvData = convertToCSV(querySnapshot);
+            downloadFile(csvData, 'trades.csv');
+        }
+
+        window.addEventListener("DOMContentLoaded", fetchTradesAndPopulateTable);
+        // Add an event listener to the 'Download' button
+        document.getElementById('learn_more').addEventListener('click', downloadCSV);
+    </script>
+</head>
+<script src="//code.tidio.co/u1rertwm6macfvpng41rnli5zhlqbhda.js" async></script>
+<body>
+    <header>
+        <h3 onclick="switchPage('index')" id="main_heading">&nbsp;&nbsp;&nbsp;&nbsp;TradersHub<span
+                class="highlight">.Crypto</span></h3>
+        <!-- Navigation Bar -->
+        <div id="nav_bar">
+            <h3 class="nav_bar_elements highlight" id="Traders">Trades</h3>
+            <h3 class="nav_bar_elements" id="LeaderBoard" onclick="switchPage('LeaderBoard')">LeaderBoard</h3>
+            <h3 class="nav_bar_elements" onclick="switchPage('FAQ')" id="FAQ">FAQ</h3>
+        </div>
+    </header>
+    <br>
+    <br>
+        <h1 class="margin_left">My <span class="highlight">Trades</span></h1>
+        <p class="margin_left">Review My Trading Activity at a Glance.</p>
+        <button class="margin_left" id="modal">Start Now</button>
+        <p class="margin_left" id="learn_more">Download</p>
+        <br>
+        <br>
+        <div class="trades_tabel">
+            <br>
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Asset</th>
+                    <th>Buy/Sell</th>
+                    <th>Quantity</th>
+                    <th>Entry Price</th>
+                    <th>Exit Price</th>
+                    <th>Profit/Loss</th>
+                </tr>
+            </table>
+            <br>
+            <br>
+        </div>
+       
+    <footer>
+        <h4 class="footer_elements" id="footer_heading">© 2024 CopyTrade. All rights reserved</h4>
+        <div id="nav_bar">
+            <h4 class="footer_elements" onclick="switchPage('Terms')">Terms</h4>
+            <h4 class="footer_elements" onclick="switchPage('Privacy')">Privacy</h4>
+            <h4 class="footer_elements" onclick="switchPage('Contact')">Contact</h4>
+        </div>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>

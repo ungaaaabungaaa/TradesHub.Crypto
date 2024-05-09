@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradesHub</title>
+    <link rel="icon" type="image/x-icon" href="/Icons/FavIcon.svg">
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+        import { getPerformance } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-performance.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBO6FtBtGkbpdNLR-9IfazKEthWAOvtxUw",
+            authDomain: "tradeshub-8ea66.firebaseapp.com",
+            projectId: "tradeshub-8ea66",
+            storageBucket: "tradeshub-8ea66.appspot.com",
+            messagingSenderId: "254064509739",
+            appId: "1:254064509739:web:42e2a2902ffae3d4e0fb6e",
+            measurementId: "G-KKS5GGJ87K"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const perf = getPerformance(app);
+        const analytics = getAnalytics(app);
+
+        const populateCard = (usernameId, profitId, profileContainerId, username, profit, profileUrl) => {
+                const usernameElement = document.getElementById(usernameId);
+                const profitElement = document.getElementById(profitId);
+                const profileContainer = document.getElementById(profileContainerId);
+
+                usernameElement.textContent = username;
+                profitElement.textContent = profit;
+                profileContainer.src =profileUrl;
+        };
+
+        const fetchAndPopulateData = async () => {
+            const tradesCollection = collection(db, "Users");
+            const querySnapshot = await getDocs(tradesCollection);
+            let rank1User = null;
+            let rank2User = null;
+
+            querySnapshot.forEach(doc => {
+                const userData = doc.data();
+                    if (userData.Rank === 1) {
+                        rank1User = userData;
+                    } else if (userData.Rank === 2) {
+                        rank2User = userData;
+                    }
+                });
+
+                if (rank1User !== null) {
+                    populateCard(
+                        "card_username1",
+                        "card_profit1",
+                        "card_profile1",
+                        rank1User.Username,
+                        rank1User.Profits,
+                        rank1User.Profileurl
+                    );
+                }
+
+                if (rank2User !== null) {
+                    populateCard(
+                        "card_username2",
+                        "card_profit2",
+                        "card_profile2",
+                        rank2User.Username,
+                        rank2User.Profits,
+                        rank2User.Profileurl
+                    );
+                }
+            };
+            fetchAndPopulateData();
+    </script>
+</head>
+<script src="//code.tidio.co/u1rertwm6macfvpng41rnli5zhlqbhda.js" async></script>
+<body>
+    <header>
+        <h3 onclick="switchPage('index')" id="main_heading">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TradersHub<span class="highlight">.Crypto</span></h3>
+        <!-- Navigation Bar -->
+        <div id="nav_bar">
+            <h3 class="nav_bar_elements" id="Traders" onclick="switchPage('Traders')">Trades</h3>
+            <h3 class="nav_bar_elements" id="LeaderBoard" onclick="switchPage('LeaderBoard')">LeaderBoard</h3>
+            <h3 class="nav_bar_elements highlight scroll-button"  id="FAQ">FAQ</h3>
+        </div>
+    </header>
+        <section id="section_one">
+            <div id="section_one_one">
+                <h1>Discover & <span class="highlight">Copy</span><br>Successful Trade’s</h1>
+                <p>Effortlessly Copy a Top Trader's Moves For <br> Reliable <span class="highlight">10%</span> Monthly Return.</p>
+                <button id="modal">Start Now</button>
+                <p id="learn_more">Learn More</p>
+            </div>
+            <img id="bitcoin_img" src="Res/bitcoin.svg" alt="" srcset="">
+        </section>
+        <br>
+        <br>
+        <section id="section_two">
+            <div id="section_two_two">
+                <h1>Top <span class="highlight">T</span>raders</h1>
+                <br>
+                <br>
+                <br>
+                <div class="cards_layout">
+                   
+                    <div class="card">
+                        <div class="Graph flex_center_center">
+                            <img class="smooth_graph" src="Res/smooth1.png" onclick="switchPage('LeaderBoard')" alt="">
+                        </div>
+                        <div class="Profile flex_center_center">
+                            <img id="card_profile1" src="Res/material-symbols--circle.svg" alt="" srcset="">
+                        </div>
+                        <div class="Info flex_center_center flex_dir_col">
+                            <p id="card_username1"></p>
+                            <p id="card_profit1"></p>
+                        </div>
+                        <div class="view flex_center_center">
+                            <p onclick="switchPage('LeaderBoard')">view</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="Graph flex_center_center">
+                            <img class="smooth_graph" src="Res/smooth2.png" alt="" onclick="switchPage('LeaderBoard')">
+                        </div>
+                        <div class="Profile flex_center_center">
+                            <img id="card_profile2" src="Res/material-symbols--circle.svg" alt="" srcset="">
+                        </div>
+                        <div class="Info flex_center_center flex_dir_col">
+                            <p id="card_username2"></p>
+                            <p id="card_profit2"></p>
+                        </div>
+                        <div class="view flex_center_center">
+                            <p onclick="switchPage('LeaderBoard')">view</p>
+                        </div>
+                    </div>
+                </div>
+                <p onclick="switchPage('LeaderBoard')">View All</p>
+            </div>
+            <img id="awards_img" src="Res/awards.svg" alt="" srcset="">
+        </section>
+        <br>
+        <br>
+        <section id="section_three">
+            <div id="section_three_three">
+                <div class="Growth-title flex_center_center">
+                    <h1>Growth <span class="highlight">Calculator</span></h1>
+                </div>
+                <div class="Growth-Calculator flex_center_center flex_dir_col">
+                        <br>
+                        <div>
+                            <span id="amountDisplay">$250</span>
+                            <input  type="range" id="amount" min="250" max="10000" step="250" value="250">
+                        </div>
+                        <br>
+                        <div>
+                            <span id="monthsDisplay">1 month</span>
+                            <input type="range" id="months" min="1" max="36" value="1">
+                        </div>
+                        <br><br>
+                        <div class="flex_center_center flex_dir_row">
+                            <h1 id="earnedDisplay">$0</h1>
+                            &nbsp;
+                            &nbsp;
+                            <span class="highlight" id="interestDisplay">0%</span>
+                        </div>
+                        <br>
+                        <button id="modal">Start Now</button>
+                        <p id="learn_more">Learn More</p>
+                </div>
+                <div class="Growth-Image flex_center_center">
+                    <img id="growth_img" src="Res/growth.svg" alt="" srcset="">
+                </div>
+            </div>
+        </section>
+        <br>
+        <br>
+        <section id="section_four">
+            <div id="section_four_four">
+                <div class="LeaderBoard-Title flex_center_center ">
+                    <h1>LeaderBoard</h1>
+                </div>
+                <div class="Leaderboard_preview flex_center_center ">
+                    <img id="leadboard_img" src="Res/transfer_money.svg" alt="" srcset="">
+                </div>
+                <div class="leaderboard flex_center_center flex_dir_col">
+                    <!-- fill the details from firestore userdb rank 1 , rank 2 , rank 3 -->
+                    <div class="leadboard_card">
+                        <img id="leadboard_card_profile" src="Res/material-symbols--circle.svg" alt="">
+                        <p id="leadboard_card_username">Sammy_xf</p>
+                        <p id=leadboard_card_profits">↑ 612$</p>
+                    </div>
+                    <div class="leadboard_card">
+                        <img id="leadboard_card_profile" src="Res/material-symbols--circle.svg" alt="">
+                        <p id="leadboard_card_username">KingHeld</p>
+                        <p id=leadboard_card_profits">↑ 212$</p>
+                    </div>
+                    <div class="leadboard_card">
+                        <img id="leadboard_card_profile" src="Res/material-symbols--circle.svg" alt="">
+                        <p id="leadboard_card_username">Zex</p>
+                        <p id=leadboard_card_profits">↑ 312$</p>
+                    </div>
+                    <br>
+                    <button onclick="switchPage('LeaderBoard')" id="modal">View All</button>
+                    <p id="learn_more">Learn More</p>
+                </div>
+            </div>
+        </section>
+        <br>
+        <br>
+        <section id="section_six">
+            <div id="section_six_six">
+                <div class="Social flex_center_center flex_dir_col">
+                    <div class="vertical_content">
+                        <span class="fa6-brands--x-twitter icon"></span>
+                        <span class="ri--facebook-fill icon "></span>
+                        <span class="mdi--instagram icon"></span>
+                    </div>
+                </div>
+                <div class="about flex_center_center flex_dir_col">
+                    <h1>About <span class="highlight">U</span>s</h1>
+                    <p class="text_align_center">Copy Trades With Confidence for a promised <span class="highlight">10%</span> return, <br>
+                         knowing your funds are secure in your account."</p>
+                    <img id="aboutus_img" src="Res/update.svg" alt="">
+                    <br>
+                    <br>
+                    <button onclick="switchPage('Contact')" id="modal">Contact Us</button>
+                    <p id="learn_more">Tradeshub.Crypto@ud.me</p>
+                </div>
+            </div>
+        </section>
+        <section id="section_five">
+            <div class="FAQ-Title scroll-target">
+                <br>
+                <h1>FA<span class="highlight">Q</span></h1>
+                <p class="text_align_end">Copy Trades With Confidence for a promised  <span class="highlight">10%</span> return, <br>
+                     knowing your funds are secure in your account."</p>
+                <br>     
+            </div>
+            <div class="FAQ flex_center_center flex_dir_col">
+                <div class="accordion">
+                    <div class="accordion-header">What is TradesHub?</div>
+                    <div class="accordion-content">
+                        <p>TradesHub is a platform that allows users to copy trades made by experienced traders and potentially earn a
+                            <span class="highlight">10%</span> return
+                            on their deposit. It provides a convenient way for individuals to engage in <span
+                                class="highlight">trading</span> without needing extensive knowledge
+                            or experience in the financial markets.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">How does TradesHub work?</div>
+                    <div class="accordion-content">
+                        <p>TradesHub works by connecting users with skilled trader who share their trading strategies on the platform.
+                            analyze His performance history, and choose to copy their trades. When a trader
+                            executes a trade, it is <span class="highlight">automatically</span> replicated in the user's account
+                            proportionally to their investment. If the trade
+                            is successful, users can potentially earn a 10% return on their deposit.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">Is TradesHub safe and secure?</div>
+                    <div class="accordion-content">
+                        <p>Yes, TradesHub prioritizes the safety and security of its users' funds and personal information. The platform
+                            employs
+                            advanced security measures, such as <span class="highlight">encryption</span> and <span
+                                class="highlight">two-factor authentication</span>, to safeguard user accounts. Additionally,
+                            TradesHub carefully vets and monitors the traders on its platform to ensure they meet certain criteria and
+                            maintain a
+                            track record of successful trading. However, it's important to note that trading involves risk, and users
+                            should always
+                            conduct their own research and consider their <span class="highlight">risk</span> tolerance before
+                            participating.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">How do I get started with TradesHub?</div>
+                    <div class="accordion-content">
+                        <p>To get started with TradesHub, simply sign up for an account on our platform. Once <span
+                                class="highlight">registered</span>, you can explore the
+                            available traders, review their performance, and start copying trades that align with your investment goals.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="accordion">
+                    <div class="accordion-header">What are the fees associated with using TradesHub?</div>
+                    <div class="accordion-content">
+                        <p>TradesHub charges a No nominal fee for each trade copied by users. This helps support the platform's
+                            operations and
+                            ensures the quality of services provided to our <span class="highlight">users</span>.</p>
+                    </div>
+                </div>
+                </div>
+            <div class="FAQ-IMG flex_center_center">
+                <img id="FAQ_img" src="Res/questions.svg" alt="">
+            </div>
+           
+
+        </section>
+        <br>
+        <br>
+   
+        <!-- 
+            RealTime Database - LeaderBoard
+            modal pop up for simple user form
+            leadboard page
+            Add LeaderBoard Section , Page
+        -->
+        
+        <!-- 
+            Phase 2  ~ Require HardWare - Ultrawide Monitor with color correctiveness 
+            1. Check Responsive Across all the devices 
+            2. Upload the files to traders.crypto Domain
+            3. Backend Rank Manager 
+        -->
+
+
+        <footer>
+        <h4 class="footer_elements" id="footer_heading">© 2024 CopyTrade. All rights reserved</h4>
+            <div id="nav_bar">
+                <h4 class="footer_elements" onclick="switchPage('Terms')">Terms</h4>
+                <h4 class="footer_elements" onclick="switchPage('Privacy')">Privacy</h4>
+                <h4 class="footer_elements" onclick="switchPage('Contact')">Contact</h4>
+            </div>
+        </footer>
+    <script src="index.js"></script>
+
+   
+</body>
+</html>

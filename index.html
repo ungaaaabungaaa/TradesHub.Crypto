@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradesHub</title>
+    <link rel="icon" type="image/x-icon" href="/Icons/FavIcon.svg">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+        #splashScreen
+        {
+            min-width: 35%;
+            max-width: 42%;
+            height: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="full_screen flex_center_center flex_dir_col">
+        <img id="splashScreen" src="Res/splashScreen.svg" alt="" srcset="">
+        <br>
+        <br>
+        <h2 id="splash_heading">TradesHub <span class="highlight">.Crypto</span></h2>
+    </div>
+    <script>
+        // Function to load pages in the background
+        function loadPages() {
+            var pagesToLoad = [
+                'pages/About.html',
+                'pages/Contact.html',
+                'pages/LeaderBoard.html',
+                'pages/Privacy.html',
+                'pages/Terms.html',
+                'pages/Trades.html',
+                'pages/Tradeshub.html',
+                // Add more page URLs here if needed
+            ];
+            pagesToLoad.forEach(function (pageUrl) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', pageUrl, true);
+                xhr.send();
+            });
+            // Redirect to the trades.html page after a certain time (e.g., 3 seconds)
+            setTimeout(function () {
+                window.location.href = 'Tradeshub.html';
+            }, 900); // Adjust the delay as needed
+        }
+        // Call the loadPages function when the page is fully loaded
+        document.addEventListener('DOMContentLoaded', loadPages);
+    </script>
+</body>
+
+</html>
+

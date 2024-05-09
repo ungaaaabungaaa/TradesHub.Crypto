@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeaderBoard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="/Icons/FavIcon.svg">
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+        import { getPerformance } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-performance.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBO6FtBtGkbpdNLR-9IfazKEthWAOvtxUw",
+            authDomain: "tradeshub-8ea66.firebaseapp.com",
+            projectId: "tradeshub-8ea66",
+            storageBucket: "tradeshub-8ea66.appspot.com",
+            messagingSenderId: "254064509739",
+            appId: "1:254064509739:web:42e2a2902ffae3d4e0fb6e",
+            measurementId: "G-KKS5GGJ87K"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const perf = getPerformance(app);
+        const analytics = getAnalytics(app);
+    </script>
+</head>
+<script src="//code.tidio.co/u1rertwm6macfvpng41rnli5zhlqbhda.js" async></script>
+<body>
+        <header>
+            <h3 onclick="switchPage('index')" id="main_heading">&nbsp;&nbsp;&nbsp;&nbsp;TradersHub<span
+                    class="highlight">.Crypto</span></h3>
+            <!-- Navigation Bar -->
+            <div id="nav_bar">
+                <h3 class="nav_bar_elements" id="Traders" onclick="switchPage('Traders')">Trades</h3>
+                <h3 class="nav_bar_elements highlight" id="LeaderBoard">LeaderBoard</h3>
+                <h3 class="nav_bar_elements" onclick="switchPage('FAQ')" id="FAQ">FAQ</h3>
+            </div>
+        </header>
+
+        <div class="full_screen flex_center_center flex_dir_col">
+            <img id="comingSoon" src="Res/ComingSoon.svg" alt="" srcset="">
+            <br>
+            <br>
+            <h1 id="splash_heading">Coming <span class="highlight">Soon</span></h1>
+        </div>
+        <!-- Add the Ranking Section  -->
+        <!-- Add the Profiles Sections -->
+        <footer>
+            <h4 class="footer_elements" id="footer_heading">© 2024 CopyTrade. All rights reserved</h4>
+            <div id="nav_bar">
+                <h4 class="footer_elements" onclick="switchPage('Terms')">Terms</h4>
+                <h4 class="footer_elements" onclick="switchPage('Privacy')">Privacy</h4>
+                <h4 class="footer_elements" onclick="switchPage('Contact')">Contact</h4>
+            </div>
+        </footer>
+        <script src="index.js"></script>
+</body>
+</html>
