@@ -28,24 +28,8 @@
         const db = getFirestore(app);
         const perf = getPerformance(app);
         const analytics = getAnalytics(app);
-        const tradesCollection = collection(db, "Users");
-        const querySnapshot = await getDocs(tradesCollection);
-        let rankUsers = [];
-
-         querySnapshot.forEach(doc => {
-                const userData = doc.data();
-                rankUsers.push({
-                    username: userData.Username,
-                    profit: userData.Profits,
-                    joinDate: userData.Date, 
-                    rank: userData.Rank
-                });
-            });
-
-        // Sort the rankUsers array based on the rank
-        rankUsers.sort((a, b) => a.rank - b.rank);
-
-
+        const tradesCollections = collection(db, "Users");
+        
         const populateCard = (usernameId, profitId, profileContainerId, username, profit, profileUrl) => {
             const usernameElement = document.getElementById(usernameId);
             const profitElement = document.getElementById(profitId);
@@ -110,6 +94,24 @@
             document.addEventListener("DOMContentLoaded", () => {
                 fetchAndPopulateData();
             });
+
+
+        const querySnapshot = await getDocs(tradesCollections);
+            let rankUsers = [];
+
+            querySnapshot.forEach(doc => {
+                const userData = doc.data();
+                rankUsers.push({
+                    username: userData.Username,
+                    profit: userData.Profits,
+                    joinDate: userData.Date,
+                    rank: userData.Rank
+                });
+            });
+
+            // Sort the rankUsers array based on the rank
+            rankUsers.sort((a, b) => a.rank - b.rank);
+            
 
         // Populate the table
             const tableBody = document.querySelector(".leaderboards table tbody");
