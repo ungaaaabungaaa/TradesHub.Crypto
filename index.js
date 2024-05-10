@@ -89,7 +89,6 @@ function isValidEmail(email) {
 // add in toast validator 
 
 
-
 const accordions = document.querySelectorAll('.accordion');
 
 accordions.forEach(accordion => {
@@ -117,7 +116,6 @@ accordions.forEach(accordion => {
 });
 
 
-
 document.addEventListener('DOMContentLoaded', function() {
   const button = document.querySelector('.scroll-button');
   const target = document.querySelector('.scroll-target');
@@ -126,7 +124,6 @@ document.addEventListener('DOMContentLoaded', function() {
     target.scrollIntoView({ behavior: 'smooth' });
   });
 });
-
 
 
 
@@ -160,3 +157,25 @@ const amountInput = document.getElementById('amount');
   });
 
   calculate(); // Initial calculation
+
+
+
+  // Function to redirect to Instagram
+    function goToInstagram() {
+      window.location.href = "https://www.instagram.com/";
+    }
+
+    // Function to redirect to Twitter
+    function goToTwitter() {
+      window.location.href = "https://twitter.com/";
+    }
+
+    // Function to redirect to Facebook
+    function goToFacebook() {
+      window.location.href = "https://www.facebook.com/";
+    }
+
+    // Add event listeners to each icon
+    document.getElementById("instagram").addEventListener("click", goToInstagram);
+    document.getElementById("twitter").addEventListener("click", goToTwitter);
+    document.getElementById("facebook").addEventListener("click", goToFacebook);
