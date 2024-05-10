@@ -33,17 +33,18 @@
                 const usernameElement = document.getElementById(usernameId);
                 const profitElement = document.getElementById(profitId);
                 const profileContainer = document.getElementById(profileContainerId);
-
                 usernameElement.textContent = username;
                 profitElement.textContent = profit;
                 profileContainer.src =profileUrl;
         };
+
 
         const fetchAndPopulateData = async () => {
             const tradesCollection = collection(db, "Users");
             const querySnapshot = await getDocs(tradesCollection);
             let rank1User = null;
             let rank2User = null;
+            let rank3User = null;
 
             querySnapshot.forEach(doc => {
                 const userData = doc.data();
@@ -51,9 +52,12 @@
                         rank1User = userData;
                     } else if (userData.Rank === 2) {
                         rank2User = userData;
+                    } else if (userData.Rank === 3) {
+                        rank3User = userData;
                     }
                 });
 
+                
                 if (rank1User !== null) {
                     populateCard(
                         "card_username1",
@@ -74,9 +78,48 @@
                         rank2User.Profits,
                         rank2User.Profileurl
                     );
+  
                 }
+
+            
+                
+                if (rank1User !== null) {
+                    populateCard(
+                        "leadboard_card_username_1",
+                        "leadboard_card_profits_1",
+                        "leadboard_card_profile_1",
+                        rank1User.Username,
+                        rank1User.Profits,
+                        rank1User.Profileurl
+                    );
+                }
+
+                if (rank2User !== null) {
+                    populateCard(
+                        "leadboard_card_username_2",
+                        "leadboard_card_profits_2",
+                        "leadboard_card_profile_2",
+                        rank2User.Username,
+                        rank2User.Profits,
+                        rank2User.Profileurl
+                    );
+                }
+
+                if (rank3User !== null) {
+                    populateCard(
+                        "leadboard_card_username_3",
+                        "leadboard_card_profits_3",
+                        "leadboard_card_profile_3",
+                        rank3User.Username,
+                        rank3User.Profits,
+                        rank3User.Profileurl
+                    );
+                }
+                
             };
-            fetchAndPopulateData();
+            document.addEventListener("DOMContentLoaded", () => {
+                    fetchAndPopulateData();
+                });
     </script>
 </head>
 <script src="//code.tidio.co/u1rertwm6macfvpng41rnli5zhlqbhda.js" async></script>
@@ -108,7 +151,6 @@
                 <br>
                 <br>
                 <div class="cards_layout">
-                   
                     <div class="card">
                         <div class="Graph flex_center_center">
                             <img class="smooth_graph" src="Res/smooth1.png" onclick="switchPage('LeaderBoard')" alt="">
@@ -191,19 +233,19 @@
                 <div class="leaderboard flex_center_center flex_dir_col">
                     <!-- fill the details from firestore userdb rank 1 , rank 2 , rank 3 -->
                     <div class="leadboard_card">
-                        <img id="leadboard_card_profile" src="Res/material-symbols--circle.svg" alt="">
-                        <p id="leadboard_card_username">Sammy_xf</p>
-                        <p id=leadboard_card_profits">↑ 612$</p>
+                        <img id="leadboard_card_profile_1" src="Res/material-symbols--circle.svg" alt="">
+                        <p id="leadboard_card_username_1"></p>
+                        <p class="highlight" id="leadboard_card_profits_1"></p>
                     </div>
                     <div class="leadboard_card">
-                        <img id="leadboard_card_profile" src="Res/material-symbols--circle.svg" alt="">
-                        <p id="leadboard_card_username">KingHeld</p>
-                        <p id=leadboard_card_profits">↑ 212$</p>
+                        <img id="leadboard_card_profile_2" src="Res/material-symbols--circle.svg" alt="">
+                        <p id="leadboard_card_username_2"></p>
+                        <p class="highlight" id="leadboard_card_profits_2"></p>
                     </div>
                     <div class="leadboard_card">
-                        <img id="leadboard_card_profile" src="Res/material-symbols--circle.svg" alt="">
-                        <p id="leadboard_card_username">Zex</p>
-                        <p id=leadboard_card_profits">↑ 312$</p>
+                        <img id="leadboard_card_profile_3" src="Res/material-symbols--circle.svg" alt="">
+                        <p id="leadboard_card_username_3"></p>
+                        <p class="highlight" id="leadboard_card_profits_3"></p>
                     </div>
                     <br>
                     <button onclick="switchPage('LeaderBoard')" id="modal">View All</button>
@@ -310,12 +352,6 @@
         <br>
         <br>
    
-        <!-- 
-            RealTime Database - LeaderBoard
-            modal pop up for simple user form
-            leadboard page
-            Add LeaderBoard Section , Page
-        -->
         
         <!-- 
             Phase 2  ~ Require HardWare - Ultrawide Monitor with color correctiveness 

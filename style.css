@@ -936,12 +936,17 @@ input[type=range]::-webkit-slider-runnable-track {
     flex-direction: row;
 }
 
-#leadboard_card_profile
+#leadboard_card_profile_1,#leadboard_card_profile_2,#leadboard_card_profile_3
 {
     width: 45px;
     border-radius: 50%;
     height: 45px;
     object-fit: contain;
+}
+
+#leadboard_card_username_1
+{
+    color: black;
 }
 
 /* Leaderboard Cards */
