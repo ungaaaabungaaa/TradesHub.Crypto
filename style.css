@@ -1025,7 +1025,7 @@ input[type=range]::-webkit-slider-runnable-track {
     padding-left: 22%;
 }
 
-#rank_card_profile
+#rank_card_profile_1,#rank_card_profile_2,#rank_card_profile_3
 {
     width: 70%;
     border-radius: 50%;
@@ -1047,7 +1047,7 @@ input[type=range]::-webkit-slider-runnable-track {
     margin: 0;
 }
 
-#rank_card_username,#rank_card_profit
+#rank_card_username_1,#rank_card_username_2,#rank_card_username_3,#rank_card_profit_1,#rank_card_profit_2,#rank_card_profit_3
 {
     margin: 0;
     width: 58%;

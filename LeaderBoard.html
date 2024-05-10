@@ -9,6 +9,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
         import { getPerformance } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-performance.js";
+          import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-analytics.js";
 
         // Your web app's Firebase configuration
@@ -24,9 +25,84 @@
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
+         const db = getFirestore(app);
         const perf = getPerformance(app);
         const analytics = getAnalytics(app);
+
+
+        const populateCard = (usernameId, profitId, profileContainerId, username, profit, profileUrl) => {
+            const usernameElement = document.getElementById(usernameId);
+            const profitElement = document.getElementById(profitId);
+            const profileContainer = document.getElementById(profileContainerId);
+            usernameElement.textContent = username;
+            profitElement.textContent = profit;
+            profileContainer.src = profileUrl;
+        };
+
+         const fetchAndPopulateData = async () => {
+                const tradesCollection = collection(db, "Users");
+                const querySnapshot = await getDocs(tradesCollection);
+                let rank1User = null;
+                let rank2User = null;
+                let rank3User = null;
+
+                querySnapshot.forEach(doc => {
+                    const userData = doc.data();
+                    if (userData.Rank === 1) {
+                        rank1User = userData;
+                    } else if (userData.Rank === 2) {
+                        rank2User = userData;
+                    } else if (userData.Rank === 3) {
+                        rank3User = userData;
+                    }
+                });
+
+                if (rank1User !== null) {
+                    populateCard(
+                        "rank_card_username_1",
+                        "rank_card_profit_1",
+                        "rank_card_profile_1",
+                        rank1User.Username,
+                        rank1User.Profits,
+                        rank1User.Profileurl
+                    );
+                }
+
+                if (rank2User !== null) {
+                    populateCard(
+                        "rank_card_username_2",
+                        "rank_card_profit_2",
+                        "rank_card_profile_2",
+                        rank2User.Username,
+                        rank2User.Profits,
+                        rank2User.Profileurl
+                    );
+                }
+
+                if (rank3User !== null) {
+                    populateCard(
+                        "rank_card_username_3",
+                        "rank_card_profit_3",
+                        "rank_card_profile_3",
+                        rank3User.Username,
+                        rank3User.Profits,
+                        rank3User.Profileurl
+                    );
+                }
+
+            };
+            document.addEventListener("DOMContentLoaded", () => {
+                fetchAndPopulateData();
+            });
+
+
     </script>
+
+
+
+
+
+
 </head>
 <script src="//code.tidio.co/u1rertwm6macfvpng41rnli5zhlqbhda.js" async></script>
 <body>
@@ -66,25 +142,25 @@
                 <h3 id="leader_rank_title">Top Copy <span class="highlight">Trader</span></h3>
                 <br>
                 <div class="rank_card">
-                        <img id="rank_card_profile" src="Res/material-symbols--circle.svg" alt="" srcset="">
+                        <img id="rank_card_profile_1" src="Res/material-symbols--circle.svg" alt="" srcset="">
                         <div class="rank_card_details">
-                            <p id="rank_card_username">Sammy_xf</p>
-                            <p id="rank_card_profit" class="highlight">+ $21</p>
+                            <p id="rank_card_username_1">Sammy_xf</p>
+                            <p id="rank_card_profit_1" class="highlight">+ $21</p>
                         </div>
                         
                 </div>
                 <div class="rank_card">
-                    <img id="rank_card_profile" src="Res/material-symbols--circle.svg" alt="" srcset="">
+                    <img id="rank_card_profile_2" src="Res/material-symbols--circle.svg" alt="" srcset="">
                     <div class="rank_card_details">
-                        <p id="rank_card_username">Sammy_xf</p>
-                        <p id="rank_card_profit" class="highlight">+ $21</p>
+                        <p id="rank_card_username_2">Sammy_xf</p>
+                        <p id="rank_card_profit_2" class="highlight">+ $21</p>
                     </div>
                 </div>
                 <div class="rank_card">
-                    <img id="rank_card_profile" src="Res/material-symbols--circle.svg" alt="" srcset="">
+                    <img id="rank_card_profile_3" src="Res/material-symbols--circle.svg" alt="" srcset="">
                     <div class="rank_card_details">
-                        <p id="rank_card_username">Sammy_xf</p>
-                        <p id="rank_card_profit" class="highlight">+ $21</p>
+                        <p id="rank_card_username_3">Sammy_xf</p>
+                        <p id="rank_card_profit_3" class="highlight">+ $21</p>
                     </div>
                 </div>
             </div>
