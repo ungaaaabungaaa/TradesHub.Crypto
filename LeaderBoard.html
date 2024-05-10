@@ -25,9 +25,25 @@
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-         const db = getFirestore(app);
+        const db = getFirestore(app);
         const perf = getPerformance(app);
         const analytics = getAnalytics(app);
+        const tradesCollection = collection(db, "Users");
+        const querySnapshot = await getDocs(tradesCollection);
+        let rankUsers = [];
+
+         querySnapshot.forEach(doc => {
+                const userData = doc.data();
+                rankUsers.push({
+                    username: userData.Username,
+                    profit: userData.Profits,
+                    joinDate: userData.Date, 
+                    rank: userData.Rank
+                });
+            });
+
+        // Sort the rankUsers array based on the rank
+        rankUsers.sort((a, b) => a.rank - b.rank);
 
 
         const populateCard = (usernameId, profitId, profileContainerId, username, profit, profileUrl) => {
@@ -95,6 +111,18 @@
                 fetchAndPopulateData();
             });
 
+        // Populate the table
+            const tableBody = document.querySelector(".leaderboards table tbody");
+            rankUsers.forEach(user => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+            <td>${user.username}</td>
+            <td>${user.profit}</td>
+            <td>${user.joinDate}</td>
+            <td>${user.rank}</td>
+        `;
+                tableBody.appendChild(row);
+            });    
 
     </script>
 
