@@ -966,7 +966,7 @@ input[type=range]::-webkit-slider-runnable-track {
     display: grid;
     grid-auto-columns: 1fr;
     grid-template-columns: 30% 70%;
-    grid-template-rows: 50% 50%;
+    grid-template-rows: 55% 45%;
     gap: 0px 0px;
     grid-template-areas:
         "Rank leaderboards"
@@ -999,6 +999,62 @@ input[type=range]::-webkit-slider-runnable-track {
     grid-area: Rank;
     width: 100%;
     height: 100%;
+    margin: 0;
     overflow: hidden;
 }
+
+.rank_card
+{
+    width: 62%;
+    height: 55%;
+    background-color: #F2F2F2;
+    border-radius: 1.4rem;
+    margin-bottom: 2.1%;
+    display: grid;
+    grid-template-columns: 5% 35% 55% 5%;
+    grid-template-rows: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#leader_rank_title
+{
+    width: 100%;
+    height: auto;
+    text-align: start;
+    padding-left: 22%;
+}
+
+#rank_card_profile
+{
+    width: 70%;
+    border-radius: 50%;
+    grid-column-start: 2;
+}
+
+
+
+#rank_card_details
+{
+    width: 100%;
+    height: 100%;
+    background-color: #6C63FF;
+    grid-column-start: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+}
+
+#rank_card_username,#rank_card_profit
+{
+    margin: 0;
+    width: 58%;
+    text-align: center;
+    text-overflow: ellipsis;
+    margin-bottom: 2%;
+}
+
+
 /*LeaderBoard Page */
