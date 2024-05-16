@@ -175,7 +175,12 @@ const amountInput = document.getElementById('amount');
       window.location.href = "https://www.facebook.com/";
     }
 
+    function goToCopyTrading() {
+      window.location.href = "https://i.bybit.com/OabQq5O?action=inviteToCopy";
+    }
+
     // Add event listeners to each icon
     document.getElementById("instagram").addEventListener("click", goToInstagram);
     document.getElementById("twitter").addEventListener("click", goToTwitter);
     document.getElementById("facebook").addEventListener("click", goToFacebook);
+    document.getElementById("CopyTrading").addEventListener("click",goToCopyTrading);
