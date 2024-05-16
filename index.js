@@ -162,7 +162,7 @@ const amountInput = document.getElementById('amount');
 
   // Function to redirect to Instagram
     function goToInstagram() {
-      window.location.href = "https://www.instagram.com/";
+      window.location.href = "https://www.instagram.com/tradeshub.crypto?igsh=ZjB3eWpwczA2Zncx&utm_source=qr";
     }
 
     // Function to redirect to Twitter
