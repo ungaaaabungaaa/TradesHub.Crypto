@@ -8,6 +8,7 @@ body {
     width: 100%;
     background-color: white;
     font-family: 'Raleway', sans-serif;
+    background-color: hsla(270, 0%, 100%, 1);
 }
 
 ::-webkit-scrollbar {
@@ -16,6 +17,51 @@ body {
     background: transparent;
     /* Optional: just make scrollbar invisible */
 }
+
+
+/* Animation classes */
+
+.typing-effect {
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    white-space: nowrap;
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    letter-spacing: 0.15em;
+    /* Adjust as needed */
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: black;
+    }
+}
+
+
+
+/* Animation Classes */
+
+
 
 
 
@@ -389,6 +435,7 @@ section
     max-height: 62%;
     overflow: hidden;
     margin: 0;
+    background-color: transparent;
     padding: 0;
 }
 
